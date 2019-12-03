@@ -1,0 +1,4 @@
+gunicorn
+django-heroku
+djongo
+django-environ
