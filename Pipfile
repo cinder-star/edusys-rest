@@ -8,7 +8,7 @@ verify_ssl = true
 [packages]
 gunicorn = "*"
 django-heroku = "*"
-djongo = "*"
+python-dotenv = "*"
 django-environ = "*"
 
 [requires]
