@@ -12,7 +12,22 @@ def find(request):
         return HttpResponse()
     return HttpResponseNotFound()
 
-    
+def add(request, uid, student_name, email, contact_no, roll, section, class_no):
+    student = StudentsData(
+        uid=uid,
+        name=student_name,
+        roll=roll,
+        section=section,
+        classno=class_no,
+        email=email,
+        contact_no=contact_no,
+        password_hash="abcdef",
+    )
+    try:
+        student.save(force_insert=True)
+    except:
+        raise HttpResponseNotFound()
+    return HttpResponse()
 
 def all(request):
     try:
