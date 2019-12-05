@@ -8,12 +8,11 @@ import json
 
 def find(request):
     uid = request.GET['uid']
-    try:
-        student = StudentsData.objects.get(uid=uid)
-    except:
-        return HttpResponseNotFound()
+    if StudentsData.objects.filter(uid=uid).exists():
+        return HttpResponse()
+    return HttpResponseNotFound()
 
-    return HttpResponse()
+    
 
 def all(request):
     try:
