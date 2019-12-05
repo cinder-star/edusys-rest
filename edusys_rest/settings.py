@@ -91,8 +91,16 @@ WSGI_APPLICATION = "edusys_rest.wsgi.application"
 #         "authSource": "admin",
 #     }
 # }
+
 DATABASES = {}
 DATABASES['default'] = dj_database_url.config()
+if len(DATABASES['default']) == 0:
+    DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+}
 
 
 # Password validation
