@@ -20,3 +20,19 @@ def all(request):
     serializers = JSONSerializer()
     students = serializers.serialize(studentsdata)
     return JsonResponse(students, safe=False)
+
+def add(request):
+    try:
+        uid = request.GET['uid']
+        name = request.GET['name']
+        roll = request.GET['roll']
+        section = request.GET['section']
+        classno = request.GET['class']
+        email = request.GET['email']
+        contact = request.GET['contact']
+
+        student = StudentsData(uid=uid, name=name, roll=roll, section=section, classno=classno, email=email, contact_no=contact, password_hash='abcdef')
+        student.save(force_insert=True)
+    except:
+        return HttpResponseNotFound()
+    return HttpResponse()
