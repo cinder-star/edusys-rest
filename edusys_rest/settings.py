@@ -93,14 +93,14 @@ WSGI_APPLICATION = "edusys_rest.wsgi.application"
 # }
 
 DATABASES = {}
-DATABASES['default'] = dj_database_url.config(conn_max_age=600)
-if len(DATABASES['default']) == 0:
+DATABASES["default"] = dj_database_url.config(conn_max_age=600)
+if len(DATABASES["default"]) == 0:
     DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
+        }
     }
-}
 
 
 # Password validation
@@ -135,7 +135,7 @@ USE_TZ = True
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
 STATIC_URL = "/static/"
-STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
+STATIC_ROOT = os.path.join(PROJECT_ROOT, "static")
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 django_heroku.settings(locals())
