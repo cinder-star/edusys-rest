@@ -44,11 +44,14 @@ def add_enrollments(request):
 
 
 def add_attendance(request):
-    for i in range(5000):
-        x = str(random.randint(1, 1000))
-        y = Enrollment.objects.get(rfid=x).cid_id
-        attendance = Attendance(rfid=x, cid=y, date=random_date())
-        attendance.save()
+    for i in range(1000):
+        x = list(Student.objects.get(uid=i).enrollment_set.all())
+        for j in range(2):
+            y = x[j].cid_id
+            attendance = Attendance(rfid=x[j].rfid, cid=y, date=random_date())
+            attendance = Attendance(rfid=x[j].rfid, cid=y, date=random_date())
+            attendance = Attendance(rfid=x[j].rfid, cid=y, date=random_date())
+            attendance.save()
     return HttpResponse()
 
 
