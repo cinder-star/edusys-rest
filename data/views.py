@@ -49,7 +49,9 @@ def add_attendance(request):
         for j in range(2):
             y = x[j].cid_id
             attendance = Attendance(rfid=x[j].rfid, cid=y, date=random_date())
+            attendance.save()
             attendance = Attendance(rfid=x[j].rfid, cid=y, date=random_date())
+            attendance.save()
             attendance = Attendance(rfid=x[j].rfid, cid=y, date=random_date())
             attendance.save()
     return HttpResponse()
