@@ -44,7 +44,7 @@ def add_enrollments(request):
 
 
 def add_attendance(request):
-    for i in range(1000):
+    for i in range(1,1001):
         x = list(Student.objects.get(id=i).enrollment_set.all())
         for j in range(2):
             y = x[j].cid_id
