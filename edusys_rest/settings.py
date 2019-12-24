@@ -37,7 +37,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    "data.apps.DataConfig",
+    "attendance.apps.AttendanceConfig",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -81,17 +81,6 @@ WSGI_APPLICATION = "edusys_rest.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-# DATABASES = {
-#     "default": {
-#         "ENGINE": "djongo",
-#         "NAME": env("NAME"),
-#         "USERNAME": env("USER"),
-#         "PASSWORD": env("PASSWORD"),
-#         "HOST": env("DB_URL"),
-#         "authSource": "admin",
-#     }
-# }
-
 DATABASES = {}
 DATABASES["default"] = dj_database_url.config(conn_max_age=600)
 if len(DATABASES["default"]) == 0:
@@ -101,6 +90,8 @@ if len(DATABASES["default"]) == 0:
             "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
         }
     }
+
+AUTH_USER_MODEL = "attendance.User"
 
 
 # Password validation
