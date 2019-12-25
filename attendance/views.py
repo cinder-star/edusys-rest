@@ -34,8 +34,9 @@ def get_all_classrooms(request):
         rfid=request.GET["rfid"]
         classrooms = list(Classroom.objects.filter(punch_id_id=rfid).values('id','name','section'))
         classes = json.dumps(classrooms)
+        classes = json.loads(classes)
         return JsonResponse(classes, safe=False)
-    except:
+    except :
         return HttpResponseNotFound()
 
 def activate(request):
