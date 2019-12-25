@@ -2,7 +2,6 @@ from pytz import utc, timezone
 from datetime import datetime
 from .models import User, Classroom, Enrollment, Attendance
 from django.http import HttpResponseNotFound, JsonResponse, HttpResponse
-from .serializers import JSONSerializer
 import json
 
 def record_attendance(request):
@@ -31,14 +30,13 @@ def record_attendance(request):
     return HttpResponse()
 
 def get_all_classrooms(request):
-    # try:
-    rfid=request.GET["rfid"]
-    classrooms = list(Classroom.objects.filter(punch_id_id=rfid).valus('id','name','section'))
-    # serializers = JSONSerializer()
-    classes = json.dumps(classrooms)
-    return JsonResponse(classes, safe=False)
-    # except:
-    #     return HttpResponseNotFound()
+    try:
+        rfid=request.GET["rfid"]
+        classrooms = list(Classroom.objects.filter(punch_id_id=rfid).values('id','name','section'))
+        classes = json.dumps(classrooms)
+        return JsonResponse(classes, safe=False)
+    except:
+        return HttpResponseNotFound()
 
 def activate(request):
     try:
