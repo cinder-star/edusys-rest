@@ -192,8 +192,8 @@ class Enrollment(models.Model):
 
 
 class Attendance(models.Model):
-    rfid = models.IntegerField(blank=False)
-    cid = models.IntegerField(blank=False, db_index=True)
+    rfid_id = models.CharField(max_length=8, blank=False)
+    cid = models.IntegerField(blank=False, db_index=True, db_column="cid_id")
     entry_date = models.CharField(max_length=10, default=None)
     punch_date = models.CharField(max_length=10, default=None)
     entry_time = models.CharField(max_length=8, default=None)
@@ -211,7 +211,7 @@ class Attendance(models.Model):
             models.Index(fields=["cid",]),
         ]
         unique_together = [
-            ["rfid", "punch_date"],
+            ["rfid_id", "punch_date"],
         ]
 
     class AffiliationRequest(models.Model):
