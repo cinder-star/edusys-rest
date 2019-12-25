@@ -18,7 +18,7 @@ def record_attendance(request):
         if not student.active:
             raise Exception()
         attendance = Attendance(
-            rfid=rfid,
+            rfid_id=rfid,
             cid=student.cid_id,
             punch_time=time,
             punch_date=date,
@@ -33,9 +33,9 @@ def record_attendance(request):
 def get_all_classrooms(request):
     try:
         rfid=request.GET["rfid"]
-        classrooms = list(Classroom.objects.filter(punch_id_id=rfid).only('id','name','section'))
-        serializers = JSONSerializer()
-        classes = serializers.serialize(classrooms)
+        classrooms = list(Classroom.objects.filter(punch_id_id=rfid).valus('id','name','section'))
+        # serializers = JSONSerializer()
+        classes = json.dumps(classrooms)
         return JsonResponse(classes, safe=False)
     except:
         return HttpResponseNotFound()
